@@ -8,9 +8,9 @@
     <string name="pattern_date">MMM d, yyyy</string>
     <string name="pattern_date_short">MMM d</string>
 
-    <!-- Weeks and days -->
-    <string name="week_a">Week A</string>
-    <string name="week_b">Week B</string>
+    <!-- Shifts (internally Week A / Week B) and days -->
+    <string name="week_a">Morning</string>
+    <string name="week_b">Afternoon</string>
     <string name="this_week">this week</string>
     <string-array name="day_names">
         <item>Monday</item>
@@ -25,8 +25,8 @@
     <!-- Main screen -->
     <string name="no_alarm">—</string>
     <string name="hint_long_press">Tap a day to set the alarm time. Press and hold a day to delete it.</string>
-    <string name="which_week_question">Which week is it now?</string>
-    <string name="which_week_explanation">Pick the week that today belongs to. The app will then switch between A and B on its own.</string>
+    <string name="which_week_question">When do you go to school this week?</string>
+    <string name="which_week_explanation">Pick this week\'s shift. The app will then switch between morning and afternoon on its own.</string>
     <string name="pause_tomorrow">Pause tomorrow</string>
     <string name="pause_tomorrow_desc">The next alarm is skipped, the schedule stays.</string>
     <string name="next_alarm_format">Next alarm: %1$s, %2$s at %3$s (%4$s)</string>
@@ -35,11 +35,11 @@
     <!-- Settings -->
     <string name="settings_title">Settings</string>
     <string name="back">Back</string>
-    <string name="now_is_week">It is now:</string>
-    <string name="anchor_info">Set: %1$s is %2$s</string>
-    <string name="anchor_not_set">No week selected yet.</string>
+    <string name="now_is_week">This week I go:</string>
+    <string name="anchor_info">Set: %1$s – %2$s</string>
+    <string name="anchor_not_set">No shift selected yet.</string>
     <string name="define_week">Define week</string>
-    <string name="anchor_editor_hint">Pick any date and the week it belongs to. It does not have to be a Monday.</string>
+    <string name="anchor_editor_hint">Pick any date and the shift for that week. It does not have to be a Monday.</string>
     <string name="anchor_date_button">Date: %1$s</string>
     <string name="save">Save</string>
     <string name="ringtone">Alarm sound</string>
@@ -65,7 +65,7 @@
     <string name="time_format_12h">12-hour (7:30 PM)</string>
     <string name="check_permissions">Check permissions</string>
     <string name="about">About</string>
-    <string name="about_text">Version %1$s\n\nAB Alarm alternates alarms for Week A and Week B (morning and afternoon school shifts) without switching them by hand.</string>
+    <string name="about_text">Version %1$s\n\nAB Alarm alternates alarms for the morning and afternoon school shifts on its own, without switching them by hand.</string>
     <string name="ok">OK</string>
 
     <!-- Startup -->

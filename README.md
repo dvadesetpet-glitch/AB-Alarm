@@ -5,8 +5,8 @@
 <h1 align="center">AB Alarm</h1>
 
 <p align="center">
-  Budilica za dvosmjensku nastavu: <b>Tjedan A</b> i <b>Tjedan B</b> izmjenjuju se automatski.<br>
-  <i>An alarm clock for two-shift schooling: <b>Week A</b> and <b>Week B</b> alternate automatically.</i>
+  Budilica za dvosmjensku nastavu: alarmi za tjedan <b>ujutro</b> i tjedan <b>popodne</b> izmjenjuju se automatski.<br>
+  <i>An alarm clock for two-shift schooling: <b>morning</b> and <b>afternoon</b> week alarms alternate automatically.</i>
 </p>
 
 <p align="center">
@@ -32,9 +32,9 @@ U hrvatskim školama učenici jedan tjedan idu u školu ujutro, a sljedeći popo
 
 ### Značajke
 
-- **Dva tjedna, 14 alarma:** svaki dan u Tjednu A i Tjednu B ima svoj alarm ili je isključen. Vikend se postavlja zasebno.
+- **Dvije smjene, 14 alarma:** svaki dan u tjednu „Ujutro” i tjednu „Popodne” ima svoj alarm ili je isključen. Vikend se postavlja zasebno.
 - **Jednostavno sučelje:** dodir na dan postavlja vrijeme, a dugi pritisak briše alarm.
-- **Automatska izmjena tjedana:** dovoljno je jednom reći „sada je Tjedan A”. Taj dan ne mora biti ponedjeljak.
+- **Automatska izmjena smjena:** dovoljno je jednom reći „ovaj tjedan idem ujutro”. Taj dan ne mora biti ponedjeljak.
 - **Pauziraj sutra:** preskače sljedeći alarm, a raspored ostaje nepromijenjen.
 - **Pouzdano zvoni:** koristi `setAlarmClock()`, pa zvoni na vrijeme i kad je mobitel u stanju mirovanja (Doze). Nakon restarta mobitela alarmi se ponovno zakazuju.
 - **Odgoda:** trajanje od 5 do 30 min i najveći broj odgoda (1, 3, 5, 10 ili neograničeno).
@@ -46,7 +46,7 @@ U hrvatskim školama učenici jedan tjedan idu u školu ujutro, a sljedeći popo
 
 1. Preuzmi `AB-Alarm-v0.1.apk` s [Releases](../../releases).
 2. Otvori datoteku na mobitelu i dopusti instalaciju iz nepoznatih izvora.
-3. Pri prvom pokretanju dopusti obavijesti, pa odaberi koji je tjedan sada (A ili B).
+3. Pri prvom pokretanju dopusti obavijesti, pa odaberi ideš li ovaj tjedan ujutro ili popodne.
 4. Otvori **Postavke → Provjeri dopuštenja** i prođi kroz korake.
 
 Potreban je **Android 8.0 (API 26)** ili noviji.
@@ -55,7 +55,7 @@ Potreban je **Android 8.0 (API 26)** ili noviji.
 
 ### Kako se računa tjedan
 
-Korisnik odabere jedan datum (bilo koji dan u tjednu) i kaže kojem tjednu pripada. Za svaki drugi datum aplikacija:
+Interno se smjene zovu Tjedan A (ujutro) i Tjedan B (popodne). Korisnik odabere jedan datum (bilo koji dan u tjednu) i kaže koja je smjena u tom tjednu. Za svaki drugi datum aplikacija:
 
 1. svede oba datuma na **ponedjeljak** njihova tjedna,
 2. izračuna razliku u tjednima: `Math.floorDiv(razlikaDana, 7)`,
@@ -120,9 +120,9 @@ In Croatian schools, students attend school in the morning one week and in the a
 
 ### Features
 
-- **Two weeks, 14 alarms:** every day in Week A and Week B has its own alarm or is turned off. Weekends are set separately.
+- **Two shifts, 14 alarms:** every day in the "Morning" week and the "Afternoon" week has its own alarm or is turned off. Weekends are set separately.
 - **Simple interface:** tap a day to set the time, press and hold to delete the alarm.
-- **Automatic week switching:** just say "it is Week A now" once. That day does not have to be a Monday.
+- **Automatic shift switching:** just say "this week I go in the morning" once. That day does not have to be a Monday.
 - **Pause tomorrow:** skips the next alarm and leaves the schedule unchanged.
 - **Reliable ringing:** uses `setAlarmClock()`, so it rings on time even when the phone is idle (Doze). Alarms are rescheduled after the phone restarts.
 - **Snooze:** length from 5 to 30 min and a maximum number of snoozes (1, 3, 5, 10 or unlimited).
@@ -134,7 +134,7 @@ In Croatian schools, students attend school in the morning one week and in the a
 
 1. Download `AB-Alarm-v0.1.apk` from [Releases](../../releases).
 2. Open the file on your phone and allow installing from unknown sources.
-3. On first launch, allow notifications, then choose which week it is now (A or B).
+3. On first launch, allow notifications, then choose whether you go to school in the morning or the afternoon this week.
 4. Open **Settings → Check permissions** and go through the steps.
 
 Requires **Android 8.0 (API 26)** or newer.
@@ -143,7 +143,7 @@ Requires **Android 8.0 (API 26)** or newer.
 
 ### How the week is calculated
 
-The user picks one date (any day of the week) and says which week it belongs to. For every other date, the app:
+Internally, the shifts are called Week A (morning) and Week B (afternoon). The user picks one date (any day of the week) and says which shift that week is. For every other date, the app:
 
 1. moves both dates back to the **Monday** of their week,
 2. calculates the difference in weeks: `Math.floorDiv(dayDifference, 7)`,

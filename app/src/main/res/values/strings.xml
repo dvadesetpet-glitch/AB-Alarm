@@ -8,9 +8,9 @@
     <string name="pattern_date">d.M.yyyy.</string>
     <string name="pattern_date_short">d.M.</string>
 
-    <!-- Tjedni i dani -->
-    <string name="week_a">Tjedan A</string>
-    <string name="week_b">Tjedan B</string>
+    <!-- Smjene (interno Tjedan A / Tjedan B) i dani -->
+    <string name="week_a">Ujutro</string>
+    <string name="week_b">Popodne</string>
     <string name="this_week">ovaj tjedan</string>
     <string-array name="day_names">
         <item>Ponedjeljak</item>
@@ -25,8 +25,8 @@
     <!-- Glavni ekran -->
     <string name="no_alarm">—</string>
     <string name="hint_long_press">Dodirni dan za vrijeme alarma. Drži prst na danu za brisanje.</string>
-    <string name="which_week_question">Koji je tjedan sada?</string>
-    <string name="which_week_explanation">Odaberi tjedan u kojem je današnji dan. Aplikacija će dalje sama izmjenjivati A i B.</string>
+    <string name="which_week_question">Kada ideš u školu ovaj tjedan?</string>
+    <string name="which_week_explanation">Odaberi smjenu za ovaj tjedan. Aplikacija će dalje sama izmjenjivati jutarnju i popodnevnu smjenu.</string>
     <string name="pause_tomorrow">Pauziraj sutra</string>
     <string name="pause_tomorrow_desc">Sljedeći alarm se preskače, raspored ostaje.</string>
     <string name="next_alarm_format">Sljedeći alarm: %1$s %2$s u %3$s (%4$s)</string>
@@ -35,11 +35,11 @@
     <!-- Postavke -->
     <string name="settings_title">Postavke</string>
     <string name="back">Natrag</string>
-    <string name="now_is_week">Sada je tjedan:</string>
-    <string name="anchor_info">Postavljeno: %1$s je %2$s</string>
-    <string name="anchor_not_set">Tjedan još nije odabran.</string>
+    <string name="now_is_week">Ovaj tjedan idem:</string>
+    <string name="anchor_info">Postavljeno: %1$s – %2$s</string>
+    <string name="anchor_not_set">Smjena još nije odabrana.</string>
     <string name="define_week">Definiraj tjedan</string>
-    <string name="anchor_editor_hint">Odaberi bilo koji datum i kojem tjednu pripada. Ne mora biti ponedjeljak.</string>
+    <string name="anchor_editor_hint">Odaberi bilo koji datum i smjenu u tom tjednu. Ne mora biti ponedjeljak.</string>
     <string name="anchor_date_button">Datum: %1$s</string>
     <string name="save">Spremi</string>
     <string name="ringtone">Ton alarma</string>
@@ -68,7 +68,7 @@
     <string name="time_format_12h">12 sati (7:30 PM)</string>
     <string name="check_permissions">Provjeri dopuštenja</string>
     <string name="about">O aplikaciji</string>
-    <string name="about_text">Verzija %1$s\n\nAB Alarm izmjenjuje alarme za Tjedan A i Tjedan B (jutarnja i popodnevna smjena) bez ručnog prebacivanja.</string>
+    <string name="about_text">Verzija %1$s\n\nAB Alarm sam izmjenjuje alarme za jutarnju i popodnevnu smjenu, bez ručnog prebacivanja.</string>
     <string name="ok">U redu</string>
 
     <!-- Pokretanje -->
