@@ -50,6 +50,7 @@ class AlarmActivity : AppCompatActivity() {
         setContent {
             AbAlarmTheme {
                 val label by AlarmService.ringingLabel.collectAsStateWithLifecycle()
+                val title by AlarmService.ringingTitle.collectAsStateWithLifecycle()
                 val snooze by AlarmService.snooze.collectAsStateWithLifecycle()
                 // Alarm je zaustavljen (gumb, obavijest ili automatski) → zatvori ekran.
                 LaunchedEffect(label) {
@@ -62,7 +63,7 @@ class AlarmActivity : AppCompatActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Text(
-                            text = stringResource(R.string.alarm_notification_title),
+                            text = title ?: stringResource(R.string.alarm_notification_title),
                             fontSize = 40.sp,
                             textAlign = TextAlign.Center,
                         )

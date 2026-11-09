@@ -34,6 +34,7 @@ U hrvatskim školama učenici jedan tjedan idu u školu ujutro, a sljedeći popo
 
 - **Dvije smjene, 14 alarma:** svaki dan u tjednu „Ujutro” i tjednu „Popodne” ima svoj alarm ili je isključen. Vikend se postavlja zasebno.
 - **Jednostavno sučelje:** dodir na dan postavlja vrijeme, a dugi pritisak briše alarm.
+- **Dodatni alarmi za aktivnosti:** strelica desno uz dan otvara popis dodatnih alarma (trening, strani jezik, glazbena…), do 5 po danu i zasebno za svaku smjenu. Mogu biti i jutarnji, npr. engleski u tjednu kad je škola popodne. Kad je dan sklopljen, njihova vremena pišu se sitno ispod naziva dana. „Pauziraj sutra” ih ne preskače.
 - **Automatska izmjena smjena:** dovoljno je jednom reći „ovaj tjedan idem ujutro”. Taj dan ne mora biti ponedjeljak.
 - **Pauziraj sutra:** preskače sljedeći alarm, a raspored ostaje nepromijenjen.
 - **Pouzdano zvoni:** koristi `setAlarmClock()`, pa zvoni na vrijeme i kad je mobitel u stanju mirovanja (Doze). Nakon restarta mobitela alarmi se ponovno zakazuju.
@@ -122,6 +123,7 @@ In Croatian schools, students attend school in the morning one week and in the a
 
 - **Two shifts, 14 alarms:** every day in the "Morning" week and the "Afternoon" week has its own alarm or is turned off. Weekends are set separately.
 - **Simple interface:** tap a day to set the time, press and hold to delete the alarm.
+- **Extra alarms for activities:** the arrow on the right of a day opens a list of extra alarms (training, language class, music school…), up to 5 per day and separate for each shift. They can also be in the morning, e.g. an English class in the week when school is in the afternoon. When the day is collapsed, their times are shown in small text under the day name. "Pause tomorrow" does not skip them.
 - **Automatic shift switching:** just say "this week I go in the morning" once. That day does not have to be a Monday.
 - **Pause tomorrow:** skips the next alarm and leaves the schedule unchanged.
 - **Reliable ringing:** uses `setAlarmClock()`, so it rings on time even when the phone is idle (Doze). Alarms are rescheduled after the phone restarts.

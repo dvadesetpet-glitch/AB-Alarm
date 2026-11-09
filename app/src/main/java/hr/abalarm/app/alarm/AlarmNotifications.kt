@@ -56,7 +56,7 @@ object AlarmNotifications {
     }
 
     /** Obavijest dok alarm zvoni (koristi je ForegroundService). */
-    fun buildRinging(context: Context, label: String, snooze: SnoozeInfo): android.app.Notification {
+    fun buildRinging(context: Context, title: String?, label: String, snooze: SnoozeInfo): android.app.Notification {
         val fullScreen = PendingIntent.getActivity(
             context, 0,
             Intent(context, AlarmActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
@@ -64,7 +64,7 @@ object AlarmNotifications {
         )
         return NotificationCompat.Builder(context, CHANNEL_ALARM)
             .setSmallIcon(R.drawable.ic_notification_bell)
-            .setContentTitle(context.getString(R.string.alarm_notification_title))
+            .setContentTitle(title ?: context.getString(R.string.alarm_notification_title))
             .setContentText(label)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
@@ -90,11 +90,11 @@ object AlarmNotifications {
 
     /** Rezerva ako Android ne dopusti pokretanje ForegroundServicea. */
     @SuppressLint("MissingPermission") // provjereno preko PermissionHelper.hasNotificationPermission
-    fun showFallback(context: Context, label: String) {
+    fun showFallback(context: Context, title: String?, label: String) {
         if (!PermissionHelper.hasNotificationPermission(context)) return
         val notification = NotificationCompat.Builder(context, CHANNEL_FALLBACK)
             .setSmallIcon(R.drawable.ic_notification_bell)
-            .setContentTitle(context.getString(R.string.alarm_notification_title))
+            .setContentTitle(title ?: context.getString(R.string.alarm_notification_title))
             .setContentText(label)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)

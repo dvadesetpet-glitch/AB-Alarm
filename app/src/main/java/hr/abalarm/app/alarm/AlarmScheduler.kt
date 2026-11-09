@@ -63,16 +63,27 @@ class AlarmScheduler(
         }
         // Pauza je upravo uključena → zapamti koji se točno alarm preskače.
         if (pause && skipAt == null) {
-            val first = NextAlarmCalculator.next(now, anchor, schedule)
+            // Pauza vrijedi samo za glavni (školski) alarm, ne za dodatne.
+            val first = NextAlarmCalculator.next(now, anchor, schedule, includeExtras = false)
             if (first != null) {
                 skipAt = first.epochMillis
                 repository.setSkipAt(first.epochMillis)
             }
         }
 
-        val next = NextAlarmCalculator.next(now, anchor, schedule, if (pause) skipAt else null)
+        val next = NextAlarmCalculator.next(now, anchor, schedule, skipMainAtMillis = if (pause) skipAt else null)
         if (next != null) {
-            scheduleAlarmClock(next.epochMillis, chainPendingIntent(next.epochMillis, state.settings.appLanguage, SnoozeInfo.forNewAlarm(state.settings), labelFor(next, state.settings.timeFormat, state.settings.appLanguage)))
+            val language = state.settings.appLanguage
+            scheduleAlarmClock(
+                next.epochMillis,
+                chainPendingIntent(
+                    triggerAt = next.epochMillis,
+                    language = language,
+                    snooze = SnoozeInfo.forNewAlarm(state.settings),
+                    title = titleFor(next, language),
+                    label = labelFor(next, state.settings.timeFormat, language),
+                ),
+            )
         }
         repository.setNextAlarm(next?.epochMillis)
         Log.d(TAG, "Sljedeći alarm: ${next?.dateTime ?: "nema"} (preskače se: $skipAt)")
@@ -83,10 +94,11 @@ class AlarmScheduler(
      * Odgoda (snooze) – zaseban PendingIntent, ne dira lanac. Također ide kroz setAlarmClock(),
      * pa se odgođeni alarm prikazuje u statusnoj traci i okida točno i u Doze modu.
      */
-    fun scheduleSnooze(snooze: SnoozeInfo, label: String, language: AppLanguage) {
+    fun scheduleSnooze(snooze: SnoozeInfo, title: String, label: String, language: AppLanguage) {
         val triggerAt = System.currentTimeMillis() + snooze.minutes * 60_000L
         val intent = Intent(context, AlarmReceiver::class.java)
             .setAction(AlarmReceiver.ACTION_SNOOZE_FIRED)
+            .putExtra(AlarmReceiver.EXTRA_TITLE, title)
             .putExtra(AlarmReceiver.EXTRA_LABEL, label)
             .putExtra(AlarmReceiver.EXTRA_LANGUAGE, language.name)
             .let(snooze::writeTo)
@@ -129,9 +141,16 @@ class AlarmScheduler(
         }
     }
 
-    private fun chainPendingIntent(triggerAt: Long, language: AppLanguage, snooze: SnoozeInfo, label: String): PendingIntent {
+    private fun chainPendingIntent(
+        triggerAt: Long,
+        language: AppLanguage,
+        snooze: SnoozeInfo,
+        title: String,
+        label: String,
+    ): PendingIntent {
         val intent = Intent(context, AlarmReceiver::class.java)
             .setAction(AlarmReceiver.ACTION_ALARM_FIRED)
+            .putExtra(AlarmReceiver.EXTRA_TITLE, title)
             .putExtra(AlarmReceiver.EXTRA_LABEL, label)
             .putExtra(AlarmReceiver.EXTRA_LANGUAGE, language.name)
             .let(snooze::writeTo)
@@ -139,13 +158,23 @@ class AlarmScheduler(
         return PendingIntent.getBroadcast(context, REQUEST_CHAIN, intent, PI_FLAGS)
     }
 
-    /** Oznaka alarma na jeziku aplikacije (sprema se u PendingIntent pri zakazivanju). */
+    /** Naslov obavijesti: buđenje za školu ili dodatna aktivnost. */
+    private fun titleFor(next: NextAlarm, language: AppLanguage): String =
+        AppLocale.localizedContext(context, language).getString(
+            if (next.isExtra) R.string.alarm_extra_title else R.string.alarm_notification_title,
+        )
+
+    /**
+     * Oznaka alarma na jeziku aplikacije (sprema se u PendingIntent pri zakazivanju):
+     * "Ujutro · Ponedjeljak 07:00" ili za dodatni alarm "Trening · Ponedjeljak 16:30".
+     */
     private fun labelFor(next: NextAlarm, timeFormat: TimeFormat, language: AppLanguage): String {
         val ctx = AppLocale.localizedContext(context, language)
         val days = ctx.resources.getStringArray(R.array.day_names)
-        val weekName = ctx.getString(if (next.week == Week.A) R.string.week_a else R.string.week_b)
+        val name = next.extraLabel?.ifBlank { ctx.getString(R.string.extra_default_label) }
+            ?: ctx.getString(if (next.week == Week.A) R.string.week_a else R.string.week_b)
         val time = next.time.format(ctx.timeFormatter(timeFormat))
-        return ctx.getString(R.string.alarm_label_format, weekName, days[next.day.value - 1], time)
+        return ctx.getString(R.string.alarm_label_format, name, days[next.day.value - 1], time)
     }
 
     companion object {

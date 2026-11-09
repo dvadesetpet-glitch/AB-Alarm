@@ -24,13 +24,35 @@
 
     <!-- Glavni ekran -->
     <string name="no_alarm">—</string>
-    <string name="hint_long_press">Dodirni dan za vrijeme alarma. Drži prst na danu za brisanje.</string>
+    <string name="hint_long_press">Dodirni dan za vrijeme alarma. Drži prst na danu za brisanje. Strelica desno: dodatni alarmi (trening, jezik…).</string>
     <string name="which_week_question">Kada ideš u školu ovaj tjedan?</string>
     <string name="which_week_explanation">Odaberi smjenu za ovaj tjedan. Aplikacija će dalje sama izmjenjivati jutarnju i popodnevnu smjenu.</string>
     <string name="pause_tomorrow">Pauziraj sutra</string>
     <string name="pause_tomorrow_desc">Sljedeći alarm se preskače, raspored ostaje.</string>
     <string name="next_alarm_format">Sljedeći alarm: %1$s %2$s u %3$s (%4$s)</string>
     <string name="next_alarm_none">Nema zakazanih alarma</string>
+
+    <!-- Dodatni alarmi (aktivnosti) -->
+    <string name="extra_add">+ Dodaj alarm</string>
+    <string name="extra_dialog_add">Novi alarm</string>
+    <string name="extra_dialog_edit">Uredi alarm</string>
+    <string name="extra_time">Vrijeme: %1$s</string>
+    <string name="extra_label">Naziv</string>
+    <string name="extra_default_label">Aktivnost</string>
+    <string name="extra_summary">+ %1$s</string>
+    <string name="extra_expand">Prikaži dodatne alarme</string>
+    <string name="extra_collapse">Sakrij dodatne alarme</string>
+    <string name="extra_remove">Obriši alarm %1$s</string>
+    <string name="extra_max_reached">Ovaj dan već ima najviše dodatnih alarma.</string>
+    <string name="delete">Obriši</string>
+    <string name="cancel">Odustani</string>
+    <string-array name="extra_suggestions">
+        <item>Trening</item>
+        <item>Strani jezik</item>
+        <item>Glazbena škola</item>
+        <item>Ples</item>
+        <item>Zadaća</item>
+    </string-array>
 
     <!-- Postavke -->
     <string name="settings_title">Postavke</string>
@@ -101,6 +123,7 @@
     <!-- Alarm -->
     <string name="alarm_label_format">%1$s · %2$s %3$s</string>
     <string name="alarm_notification_title">Vrijeme je za ustajanje!</string>
+    <string name="alarm_extra_title">Vrijeme je za aktivnost!</string>
     <string name="action_snooze">Odgodi %1$d min</string>
     <string name="action_stop">Zaustavi</string>
     <string name="channel_alarm_name">Alarmi</string>

@@ -19,6 +19,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeParseException
+import java.util.UUID
 
 val Context.abAlarmDataStore: DataStore<Preferences> by preferencesDataStore(name = "ab_alarm")
 
@@ -42,6 +43,33 @@ class AlarmRepository(private val dataStore: DataStore<Preferences>) {
 
     suspend fun disableAlarm(week: Week, day: DayOfWeek) {
         dataStore.edit { it[enabledKey(week, day)] = false }
+    }
+
+    /** Dodaje dodatni alarm (najviše [ExtraAlarm.MAX_PER_DAY] po danu). */
+    suspend fun addExtra(week: Week, day: DayOfWeek, time: LocalTime, label: String) {
+        dataStore.edit { prefs ->
+            val list = ExtraAlarmCodec.decode(prefs[extrasKey(week, day)])
+            if (list.size >= ExtraAlarm.MAX_PER_DAY) return@edit
+            val added = ExtraAlarm(UUID.randomUUID().toString(), time, ExtraAlarmCodec.cleanLabel(label))
+            prefs[extrasKey(week, day)] = ExtraAlarmCodec.encode((list + added).sortedBy { it.time })
+        }
+    }
+
+    suspend fun updateExtra(week: Week, day: DayOfWeek, id: String, time: LocalTime, label: String) {
+        dataStore.edit { prefs ->
+            val list = ExtraAlarmCodec.decode(prefs[extrasKey(week, day)]).map {
+                if (it.id == id) it.copy(time = time, label = ExtraAlarmCodec.cleanLabel(label)) else it
+            }
+            prefs[extrasKey(week, day)] = ExtraAlarmCodec.encode(list.sortedBy { it.time })
+        }
+    }
+
+    suspend fun removeExtra(week: Week, day: DayOfWeek, id: String) {
+        dataStore.edit { prefs ->
+            val list = ExtraAlarmCodec.decode(prefs[extrasKey(week, day)]).filterNot { it.id == id }
+            if (list.isEmpty()) prefs.remove(extrasKey(week, day))
+            else prefs[extrasKey(week, day)] = ExtraAlarmCodec.encode(list)
+        }
     }
 
     /** Novo sidro; poništava i eventualno već izračunati "preskoči" trenutak. */
@@ -117,12 +145,21 @@ class AlarmRepository(private val dataStore: DataStore<Preferences>) {
             )
         }
 
+        fun extras(w: Week) = DayOfWeek.entries
+            .associateWith { day -> ExtraAlarmCodec.decode(p[extrasKey(w, day)]) }
+            .filterValues { it.isNotEmpty() }
+
         val anchorDate = p[KEY_ANCHOR_DATE]?.let(::parseDate)
         val anchorWeek = p[KEY_ANCHOR_WEEK]?.let { name -> Week.entries.firstOrNull { it.name == name } }
         val anchor = if (anchorDate != null && anchorWeek != null) Anchor(anchorDate, anchorWeek) else null
 
         return AppState(
-            schedule = Schedule(weekA = week(Week.A), weekB = week(Week.B)),
+            schedule = Schedule(
+                weekA = week(Week.A),
+                weekB = week(Week.B),
+                extrasA = extras(Week.A),
+                extrasB = extras(Week.B),
+            ),
             settings = AppSettings(
                 anchor = anchor,
                 ringtoneUri = p[KEY_RINGTONE],
@@ -173,5 +210,6 @@ class AlarmRepository(private val dataStore: DataStore<Preferences>) {
 
         fun timeKey(week: Week, day: DayOfWeek) = stringPreferencesKey("time_${week.name}_${day.name}")
         fun enabledKey(week: Week, day: DayOfWeek) = booleanPreferencesKey("enabled_${week.name}_${day.name}")
+        fun extrasKey(week: Week, day: DayOfWeek) = stringPreferencesKey("extras_${week.name}_${day.name}")
     }
 }

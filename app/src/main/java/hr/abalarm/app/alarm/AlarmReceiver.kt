@@ -18,13 +18,15 @@ class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val label = intent.getStringExtra(EXTRA_LABEL).orEmpty()
+        // Stariji zakazani alarmi nemaju naslov → servis koristi zadani.
+        val title = intent.getStringExtra(EXTRA_TITLE)
         val language = intent.getStringExtra(EXTRA_LANGUAGE)
             ?.let { name -> AppLanguage.entries.firstOrNull { it.name == name } }
             ?: AppLanguage.SYSTEM
         val snooze = SnoozeInfo.from(intent)
         when (intent.action) {
             ACTION_ALARM_FIRED -> {
-                AlarmService.startRinging(context, label, language, snooze)
+                AlarmService.startRinging(context, title, label, language, snooze)
 
                 // Sljedeći alarm računamo od trenutka NAKON ovog, da se isti alarm ne zakaže ponovno.
                 val triggerAt = intent.getLongExtra(EXTRA_TRIGGER_AT, 0L)
@@ -43,7 +45,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     }
                 }
             }
-            ACTION_SNOOZE_FIRED -> AlarmService.startRinging(context, label, language, snooze)
+            ACTION_SNOOZE_FIRED -> AlarmService.startRinging(context, title, label, language, snooze)
         }
     }
 
@@ -52,6 +54,7 @@ class AlarmReceiver : BroadcastReceiver() {
         const val ACTION_ALARM_FIRED = "hr.abalarm.app.action.ALARM_FIRED"
         const val ACTION_SNOOZE_FIRED = "hr.abalarm.app.action.SNOOZE_FIRED"
         const val EXTRA_LABEL = "label"
+        const val EXTRA_TITLE = "title"
         const val EXTRA_LANGUAGE = "language"
         const val EXTRA_TRIGGER_AT = "trigger_at"
     }

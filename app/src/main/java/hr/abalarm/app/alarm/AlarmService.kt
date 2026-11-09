@@ -21,6 +21,7 @@ import android.os.VibratorManager
 import android.util.Log
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
+import hr.abalarm.app.R
 import hr.abalarm.app.appContainer
 import hr.abalarm.app.data.AppLanguage
 import hr.abalarm.app.ui.AppLocale
@@ -46,6 +47,7 @@ class AlarmService : Service() {
     private var player: MediaPlayer? = null
     private var vibrator: Vibrator? = null
     private var currentLabel: String = ""
+    private var currentTitle: String? = null
     private var currentLanguage: AppLanguage = AppLanguage.SYSTEM
     private var currentSnooze: SnoozeInfo = SnoozeInfo.DEFAULT
 
@@ -55,6 +57,7 @@ class AlarmService : Service() {
         when (intent?.action) {
             ACTION_RING -> {
                 currentLabel = intent.getStringExtra(EXTRA_LABEL).orEmpty()
+                currentTitle = intent.getStringExtra(EXTRA_TITLE)
                 currentLanguage = intent.getStringExtra(EXTRA_LANGUAGE)
                     ?.let { name -> AppLanguage.entries.firstOrNull { it.name == name } }
                     ?: AppLanguage.SYSTEM
@@ -63,19 +66,26 @@ class AlarmService : Service() {
                 ServiceCompat.startForeground(
                     this,
                     AlarmNotifications.NOTIFICATION_ID_RINGING,
-                    AlarmNotifications.buildRinging(AppLocale.localizedContext(this, currentLanguage), currentLabel, currentSnooze),
+                    AlarmNotifications.buildRinging(AppLocale.localizedContext(this, currentLanguage), currentTitle, currentLabel, currentSnooze),
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
                     } else 0,
                 )
                 _snooze.value = currentSnooze
+                _ringingTitle.value = currentTitle
                 _ringingLabel.value = currentLabel
                 startRinging()
             }
             ACTION_SNOOZE -> {
                 // Ograničenje odgoda: ako su potrošene, "Odgodi" samo zaustavlja (gumb se ionako ne prikazuje).
                 if (currentSnooze.canSnooze) {
-                    appContainer.scheduler.scheduleSnooze(currentSnooze.next(), currentLabel, currentLanguage)
+                    appContainer.scheduler.scheduleSnooze(
+                        currentSnooze.next(),
+                        currentTitle ?: AppLocale.localizedContext(this, currentLanguage)
+                            .getString(R.string.alarm_notification_title),
+                        currentLabel,
+                        currentLanguage,
+                    )
                 }
                 stopAlarm()
             }
@@ -179,6 +189,7 @@ class AlarmService : Service() {
         const val ACTION_SNOOZE = "hr.abalarm.app.action.SNOOZE"
         const val ACTION_STOP = "hr.abalarm.app.action.STOP"
         private const val EXTRA_LABEL = "label"
+        private const val EXTRA_TITLE = "title"
         private const val EXTRA_LANGUAGE = "language"
 
         /** Sigurnosno gašenje ako nitko ne reagira (da ton ne svira satima). */
@@ -189,14 +200,20 @@ class AlarmService : Service() {
         /** Oznaka alarma koji trenutno zvoni ili null – prati je AlarmActivity. */
         val ringingLabel: StateFlow<String?> = _ringingLabel.asStateFlow()
 
+        private val _ringingTitle = MutableStateFlow<String?>(null)
+
+        /** Naslov alarma koji zvoni (null = zadani "Vrijeme je za ustajanje!"). */
+        val ringingTitle: StateFlow<String?> = _ringingTitle.asStateFlow()
+
         private val _snooze = MutableStateFlow(SnoozeInfo.DEFAULT)
 
         /** Odgoda za alarm koji trenutno zvoni (trajanje, preostale odgode) – za AlarmActivity. */
         val snooze: StateFlow<SnoozeInfo> = _snooze.asStateFlow()
 
-        fun startRinging(context: Context, label: String, language: AppLanguage, snooze: SnoozeInfo) {
+        fun startRinging(context: Context, title: String?, label: String, language: AppLanguage, snooze: SnoozeInfo) {
             val intent = Intent(context, AlarmService::class.java)
                 .setAction(ACTION_RING)
+                .putExtra(EXTRA_TITLE, title)
                 .putExtra(EXTRA_LABEL, label)
                 .putExtra(EXTRA_LANGUAGE, language.name)
                 .let(snooze::writeTo)
@@ -205,7 +222,7 @@ class AlarmService : Service() {
             } catch (e: Exception) {
                 // npr. ForegroundServiceStartNotAllowedException (Android 12+) ako alarm nije bio točan
                 Log.e(TAG, "ForegroundService nije pokrenut, prikazujem rezervnu obavijest", e)
-                AlarmNotifications.showFallback(AppLocale.localizedContext(context, language), label)
+                AlarmNotifications.showFallback(AppLocale.localizedContext(context, language), title, label)
             }
         }
 

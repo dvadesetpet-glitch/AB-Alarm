@@ -58,7 +58,7 @@ class NextAlarmCalculatorTest {
     @Test fun pauzaPreskaceSamoJedanAlarm() {
         val now = at("2026-11-09T05:00")
         val first = NextAlarmCalculator.next(now, anchor, schedule)!!
-        val afterSkip = NextAlarmCalculator.next(now, anchor, schedule, skipAtMillis = first.epochMillis)!!
+        val afterSkip = NextAlarmCalculator.next(now, anchor, schedule, skipMainAtMillis = first.epochMillis)!!
         assertEquals(at("2026-11-10T06:30"), afterSkip.dateTime)
     }
 

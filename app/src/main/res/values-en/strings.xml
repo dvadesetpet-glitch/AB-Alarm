@@ -24,13 +24,35 @@
 
     <!-- Main screen -->
     <string name="no_alarm">—</string>
-    <string name="hint_long_press">Tap a day to set the alarm time. Press and hold a day to delete it.</string>
+    <string name="hint_long_press">Tap a day to set the alarm time. Press and hold a day to delete it. Arrow on the right: extra alarms (training, language…).</string>
     <string name="which_week_question">When do you go to school this week?</string>
     <string name="which_week_explanation">Pick this week\'s shift. The app will then switch between morning and afternoon on its own.</string>
     <string name="pause_tomorrow">Pause tomorrow</string>
     <string name="pause_tomorrow_desc">The next alarm is skipped, the schedule stays.</string>
     <string name="next_alarm_format">Next alarm: %1$s, %2$s at %3$s (%4$s)</string>
     <string name="next_alarm_none">No alarms scheduled</string>
+
+    <!-- Extra alarms (activities) -->
+    <string name="extra_add">+ Add alarm</string>
+    <string name="extra_dialog_add">New alarm</string>
+    <string name="extra_dialog_edit">Edit alarm</string>
+    <string name="extra_time">Time: %1$s</string>
+    <string name="extra_label">Name</string>
+    <string name="extra_default_label">Activity</string>
+    <string name="extra_summary">+ %1$s</string>
+    <string name="extra_expand">Show extra alarms</string>
+    <string name="extra_collapse">Hide extra alarms</string>
+    <string name="extra_remove">Delete alarm %1$s</string>
+    <string name="extra_max_reached">This day already has the maximum number of extra alarms.</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string-array name="extra_suggestions">
+        <item>Training</item>
+        <item>Language class</item>
+        <item>Music school</item>
+        <item>Dance</item>
+        <item>Homework</item>
+    </string-array>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
@@ -98,6 +120,7 @@
     <!-- Alarm -->
     <string name="alarm_label_format">%1$s · %2$s %3$s</string>
     <string name="alarm_notification_title">Time to get up!</string>
+    <string name="alarm_extra_title">Time for your activity!</string>
     <string name="action_snooze">Snooze %1$d min</string>
     <string name="action_stop">Stop</string>
     <string name="channel_alarm_name">Alarms</string>

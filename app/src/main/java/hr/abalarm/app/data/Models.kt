@@ -58,13 +58,22 @@ data class DayAlarm(
     }
 }
 
-/** Raspored za oba tjedna: 2 × 7 dana, potpuno neovisno. */
+/**
+ * Raspored za oba tjedna: 2 × 7 dana, potpuno neovisno. Svaki dan ima jedan glavni alarm
+ * i popis dodatnih alarma (također zasebno po smjeni).
+ */
 data class Schedule(
     val weekA: Map<DayOfWeek, DayAlarm> = emptyWeek(),
     val weekB: Map<DayOfWeek, DayAlarm> = emptyWeek(),
+    val extrasA: Map<DayOfWeek, List<ExtraAlarm>> = emptyMap(),
+    val extrasB: Map<DayOfWeek, List<ExtraAlarm>> = emptyMap(),
 ) {
     fun alarmFor(week: Week, day: DayOfWeek): DayAlarm =
         (if (week == Week.A) weekA else weekB)[day] ?: DayAlarm()
+
+    /** Dodatni alarmi dana, sortirani po vremenu. */
+    fun extrasFor(week: Week, day: DayOfWeek): List<ExtraAlarm> =
+        (if (week == Week.A) extrasA else extrasB)[day].orEmpty()
 
     fun daysOf(week: Week): Map<DayOfWeek, DayAlarm> = if (week == Week.A) weekA else weekB
 

@@ -12,6 +12,7 @@ import hr.abalarm.app.data.Anchor
 import hr.abalarm.app.data.Schedule
 import hr.abalarm.app.data.Week
 import hr.abalarm.app.domain.CycleCalculator
+import hr.abalarm.app.domain.NextAlarmCalculator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,7 +30,8 @@ import java.time.ZonedDateTime
 import java.time.DayOfWeek
 import java.time.LocalTime
 
-data class NextAlarmUi(val dateTime: ZonedDateTime, val week: Week)
+/** Sljedeći alarm za prikaz; [extraLabel] je naziv dodatnog alarma (null = glavni). */
+data class NextAlarmUi(val dateTime: ZonedDateTime, val week: Week, val extraLabel: String? = null)
 
 data class MainUiState(
     val loaded: Boolean = false,
@@ -70,9 +72,16 @@ class MainViewModel(
                 (state.settings.skipAtMillis == null || state.settings.skipAtMillis > now)
             val next = state.settings.nextAlarmMillis
                 ?.takeIf { it > now && anchor != null }
-                ?.let {
-                    val dt = ZonedDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneId.systemDefault())
-                    NextAlarmUi(dt, CycleCalculator.weekForDate(dt.toLocalDate(), anchor!!))
+                ?.let { millis ->
+                    val dt = ZonedDateTime.ofInstant(Instant.ofEpochMilli(millis), ZoneId.systemDefault())
+                    // Koji alarm je točno u tom trenutku (glavni ili dodatni) – isti izračun kao scheduler.
+                    val match = NextAlarmCalculator.next(
+                        now = dt.minusNanos(1_000_000),
+                        anchor = anchor!!,
+                        schedule = state.schedule,
+                        skipMainAtMillis = if (state.settings.pauseNext) state.settings.skipAtMillis else null,
+                    )?.takeIf { it.epochMillis == millis }
+                    NextAlarmUi(dt, CycleCalculator.weekForDate(dt.toLocalDate(), anchor), match?.extraLabel)
                 }
             MainUiState(
                 loaded = true,
@@ -96,6 +105,18 @@ class MainViewModel(
 
     fun clearAlarm(week: Week, day: DayOfWeek) = launchAndReschedule {
         repository.disableAlarm(week, day)
+    }
+
+    fun addExtra(week: Week, day: DayOfWeek, time: LocalTime, label: String) = launchAndReschedule {
+        repository.addExtra(week, day, time, label)
+    }
+
+    fun updateExtra(week: Week, day: DayOfWeek, id: String, time: LocalTime, label: String) = launchAndReschedule {
+        repository.updateExtra(week, day, id, time, label)
+    }
+
+    fun removeExtra(week: Week, day: DayOfWeek, id: String) = launchAndReschedule {
+        repository.removeExtra(week, day, id)
     }
 
     fun setPauseNext(enabled: Boolean) = launchAndReschedule {
