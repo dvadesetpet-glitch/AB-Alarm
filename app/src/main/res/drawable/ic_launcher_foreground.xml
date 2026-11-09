@@ -6,13 +6,13 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- lijeva polovica: Tjedan A -->
+    <!-- lijeva polovica: Ujutro (Tjedan A) -->
     <path
-        android:fillColor="@color/week_a_blue"
+        android:fillColor="@color/morning_orange"
         android:pathData="M54,24A30,30 0,0 0,54 84Z" />
-    <!-- desna polovica: Tjedan B -->
+    <!-- desna polovica: Popodne (Tjedan B) -->
     <path
-        android:fillColor="@color/week_b_orange"
+        android:fillColor="@color/afternoon_blue"
         android:pathData="M54,24A30,30 0,0 1,54 84Z" />
     <!-- zvono -->
     <path

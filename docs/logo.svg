@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="22 22 64 64" width="512" height="512">
-  <!-- Isti oblici kao ic_launcher_foreground.xml: Tjedan A (plavo) | Tjedan B (narančasto) + zvono -->
-  <path fill="#1565C0" d="M54,24A30,30 0,0 0,54 84Z"/>
-  <path fill="#EF6C00" d="M54,24A30,30 0,0 1,54 84Z"/>
+  <!-- Isti oblici kao ic_launcher_foreground.xml: Ujutro (narančasto) | Popodne (plavo) + zvono -->
+  <path fill="#EF6C00" d="M54,24A30,30 0,0 0,54 84Z"/>
+  <path fill="#1565C0" d="M54,24A30,30 0,0 1,54 84Z"/>
   <path fill="#FFFFFF" d="M54,36c-6.6,0 -12,5.4 -12,12v9l-4,5v2h32v-2l-4,-5v-9c0,-6.6 -5.4,-12 -12,-12z"/>
   <path fill="#FFFFFF" d="M50,66a4,4 0,0 0,8 0z"/>
 </svg>

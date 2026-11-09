@@ -10,21 +10,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import hr.abalarm.app.data.Week
 
-val WeekABlue = Color(0xFF1565C0)
-val WeekALight = Color(0xFFE3F2FD)
-val WeekBOrange = Color(0xFFEF6C00)
-val WeekBLight = Color(0xFFFFF3E0)
+// Ujutro (Tjedan A) = narančasta kao zora, Popodne (Tjedan B) = plava kao dan.
+val MorningOrange = Color(0xFFEF6C00)
+val MorningLight = Color(0xFFFFF3E0)
+val AfternoonBlue = Color(0xFF1565C0)
+val AfternoonLight = Color(0xFFE3F2FD)
 private val Background = Color(0xFFFAFAFA)
 private val TextDark = Color(0xFF1C1B1F)
 
-fun Week.color(): Color = if (this == Week.A) WeekABlue else WeekBOrange
-fun Week.lightColor(): Color = if (this == Week.A) WeekALight else WeekBLight
+fun Week.color(): Color = if (this == Week.A) MorningOrange else AfternoonBlue
+fun Week.lightColor(): Color = if (this == Week.A) MorningLight else AfternoonLight
 
 // Uvijek svijetla shema (bez dinamičnih boja) – boje tjedana moraju biti prepoznatljive.
 private val LightColors = lightColorScheme(
-    primary = WeekABlue,
+    primary = AfternoonBlue,
     onPrimary = Color.White,
-    secondary = WeekBOrange,
+    secondary = MorningOrange,
     onSecondary = Color.White,
     background = Background,
     onBackground = TextDark,

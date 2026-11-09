@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="week_a_blue">#FF1565C0</color>
-    <color name="week_b_orange">#FFEF6C00</color>
+    <!-- Ujutro (zora) = narančasta, Popodne (dan) = plava -->
+    <color name="morning_orange">#FFEF6C00</color>
+    <color name="afternoon_blue">#FF1565C0</color>
     <color name="background">#FFFAFAFA</color>
     <color name="icon_background">#FFFFFFFF</color>
 </resources>
