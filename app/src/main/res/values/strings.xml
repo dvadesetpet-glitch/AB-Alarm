@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Primarni jezik: hrvatski. Za engleski dodati res/values-en/strings.xml s istim ključevima. -->
+<resources>
+    <string name="app_name">AB Alarm</string>
+
+    <!-- Formati datuma i vremena (java.time DateTimeFormatter uzorci) -->
+    <string name="pattern_time">HH:mm</string>
+    <string name="pattern_date">d.M.yyyy.</string>
+    <string name="pattern_date_short">d.M.</string>
+
+    <!-- Tjedni i dani -->
+    <string name="week_a">Tjedan A</string>
+    <string name="week_b">Tjedan B</string>
+    <string name="this_week">ovaj tjedan</string>
+    <string-array name="day_names">
+        <item>Ponedjeljak</item>
+        <item>Utorak</item>
+        <item>Srijeda</item>
+        <item>Četvrtak</item>
+        <item>Petak</item>
+        <item>Subota</item>
+        <item>Nedjelja</item>
+    </string-array>
+
+    <!-- Glavni ekran -->
+    <string name="no_alarm">—</string>
+    <string name="hint_long_press">Dodirni dan za vrijeme alarma. Drži prst na danu za brisanje.</string>
+    <string name="which_week_question">Koji je tjedan sada?</string>
+    <string name="which_week_explanation">Odaberi tjedan u kojem je današnji dan. Aplikacija će dalje sama izmjenjivati A i B.</string>
+    <string name="pause_tomorrow">Pauziraj sutra</string>
+    <string name="pause_tomorrow_desc">Sljedeći alarm se preskače, raspored ostaje.</string>
+    <string name="next_alarm_format">Sljedeći alarm: %1$s %2$s u %3$s (%4$s)</string>
+    <string name="next_alarm_none">Nema zakazanih alarma</string>
+
+    <!-- Postavke -->
+    <string name="settings_title">Postavke</string>
+    <string name="back">Natrag</string>
+    <string name="now_is_week">Sada je tjedan:</string>
+    <string name="anchor_info">Postavljeno: %1$s je %2$s</string>
+    <string name="anchor_not_set">Tjedan još nije odabran.</string>
+    <string name="define_week">Definiraj tjedan</string>
+    <string name="anchor_editor_hint">Odaberi bilo koji datum i kojem tjednu pripada. Ne mora biti ponedjeljak.</string>
+    <string name="anchor_date_button">Datum: %1$s</string>
+    <string name="save">Spremi</string>
+    <string name="ringtone">Ton alarma</string>
+    <string name="ringtone_default">Zadani ton alarma</string>
+    <string name="vibrate">Vibriranje</string>
+    <string name="app_language">Jezik aplikacije</string>
+    <string name="app_language_system">Prema sustavu</string>
+    <string name="language_name_hr" translatable="false">Hrvatski</string>
+    <string name="language_name_en" translatable="false">English</string>
+    <string name="date_format">Format datuma</string>
+    <string name="date_format_auto">Prema jeziku</string>
+    <string name="date_format_hr">Hrvatski (9.11.2026.)</string>
+    <string name="date_format_en">Engleski (Nov 9, 2026)</string>
+    <string name="time_format">Format vremena</string>
+    <string name="snooze_duration">Trajanje odgode</string>
+    <string name="snooze_option">%1$d min</string>
+    <string name="snooze_repeat">Ponavljanje odgode</string>
+    <string name="snooze_repeat_unlimited">Neograničeno</string>
+    <plurals name="snooze_repeat_times">
+        <item quantity="one">%d put</item>
+        <item quantity="few">%d puta</item>
+        <item quantity="other">%d puta</item>
+    </plurals>
+    <string name="time_format_auto">Prema jeziku</string>
+    <string name="time_format_24h">24 sata (19:30)</string>
+    <string name="time_format_12h">12 sati (7:30 PM)</string>
+    <string name="check_permissions">Provjeri dopuštenja</string>
+    <string name="about">O aplikaciji</string>
+    <string name="about_text">Verzija %1$s\n\nAB Alarm izmjenjuje alarme za Tjedan A i Tjedan B (jutarnja i popodnevna smjena) bez ručnog prebacivanja.</string>
+    <string name="ok">U redu</string>
+
+    <!-- Pokretanje -->
+    <string name="exact_dialog_title">Alarmi možda neće zvoniti na vrijeme</string>
+    <string name="exact_dialog_text">AB Alarm treba dopuštenje za točne alarme. Otvori postavke i uključi ga.</string>
+    <string name="open_settings">Otvori postavke</string>
+    <string name="later">Kasnije</string>
+
+    <!-- Čarobnjak za dopuštenja -->
+    <string name="permissions_intro">Prođi kroz korake redom. Zeleno znači da je sve u redu.</string>
+    <string name="perm_ok">U redu</string>
+    <string name="perm_missing">Nedostaje</string>
+    <string name="perm_fix">Popravi</string>
+    <string name="perm_exact_title">Točni alarmi</string>
+    <string name="perm_exact_desc">Bez ovoga Android može odgoditi alarm i za nekoliko minuta.</string>
+    <string name="perm_notif_title">Obavijesti</string>
+    <string name="perm_notif_desc">Potrebno da se alarm prikaže s gumbima \"Odgodi\" i \"Zaustavi\".</string>
+    <string name="perm_battery_title">Optimizacija baterije</string>
+    <string name="perm_battery_desc">Isključi optimizaciju baterije za AB Alarm kako ga sustav ne bi uspavao.</string>
+    <string name="perm_fullscreen_title">Prikaz preko zaključanog zaslona</string>
+    <string name="perm_fullscreen_desc">Omogućuje da se alarm prikaže preko cijelog zaslona dok je mobitel zaključan.</string>
+    <string name="perm_oem_title">Dodatni koraci za tvoj mobitel</string>
+    <string name="perm_oem_other">Za tvoj mobitel nisu potrebni dodatni koraci.</string>
+    <string name="open_app_settings">Otvori postavke aplikacije</string>
+    <string name="oem_xiaomi">Xiaomi / Redmi / POCO (MIUI, HyperOS):\n1. Postavke → Aplikacije → AB Alarm → uključi \"Automatsko pokretanje\" (Autostart).\n2. Ušteda baterije → odaberi \"Bez ograničenja\".\n3. U popisu nedavnih aplikacija zaključaj AB Alarm (ikona lokota).</string>
+    <string name="oem_huawei">Huawei / Honor (EMUI, MagicOS):\n1. Postavke → Baterija → Pokretanje aplikacija → AB Alarm.\n2. Isključi \"Automatsko upravljanje\" i uključi sve tri opcije: automatsko pokretanje, sekundarno pokretanje i rad u pozadini.</string>
+    <string name="oem_oppo">OPPO / realme / OnePlus (ColorOS):\n1. Postavke → Aplikacije → AB Alarm → dopusti \"Automatsko pokretanje\".\n2. Upotreba baterije → dopusti rad u pozadini.\n3. U popisu nedavnih aplikacija zaključaj AB Alarm.</string>
+    <string name="oem_vivo">vivo / iQOO (Funtouch OS, OriginOS):\n1. i Upravitelj → Upravitelj aplikacija → Automatsko pokretanje → uključi AB Alarm.\n2. Postavke → Baterija → Velika potrošnja u pozadini → dopusti AB Alarm.</string>
+
+    <!-- Alarm -->
+    <string name="alarm_label_format">%1$s · %2$s %3$s</string>
+    <string name="alarm_notification_title">Vrijeme je za ustajanje!</string>
+    <string name="action_snooze">Odgodi %1$d min</string>
+    <string name="action_stop">Zaustavi</string>
+    <string name="channel_alarm_name">Alarmi</string>
+    <string name="channel_alarm_desc">Obavijest dok alarm zvoni</string>
+    <string name="channel_fallback_name">Alarmi (rezerva)</string>
+    <string name="channel_fallback_desc">Koristi se samo ako se alarm ne može pokrenuti na uobičajen način</string>
+</resources>

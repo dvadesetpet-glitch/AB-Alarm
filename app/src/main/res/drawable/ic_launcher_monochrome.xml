@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Monokromatska ikona (Android 13+ tematske ikone): samo zvono -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M54,34c-7.2,0 -13,5.8 -13,13v10l-5,6v2h36v-2l-5,-6v-10c0,-7.2 -5.8,-13 -13,-13z" />
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M49,68a5,5 0,0 0,10 0z" />
+</vector>

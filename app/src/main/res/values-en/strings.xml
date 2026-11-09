@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English translation. Keys must match res/values/strings.xml (Croatian, default). -->
+<resources>
+    <string name="app_name">AB Alarm</string>
+
+    <!-- Date and time formats (java.time DateTimeFormatter patterns): 7:00 AM, Nov 9, 2026 -->
+    <string name="pattern_time">h:mm a</string>
+    <string name="pattern_date">MMM d, yyyy</string>
+    <string name="pattern_date_short">MMM d</string>
+
+    <!-- Weeks and days -->
+    <string name="week_a">Week A</string>
+    <string name="week_b">Week B</string>
+    <string name="this_week">this week</string>
+    <string-array name="day_names">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <!-- Main screen -->
+    <string name="no_alarm">—</string>
+    <string name="hint_long_press">Tap a day to set the alarm time. Press and hold a day to delete it.</string>
+    <string name="which_week_question">Which week is it now?</string>
+    <string name="which_week_explanation">Pick the week that today belongs to. The app will then switch between A and B on its own.</string>
+    <string name="pause_tomorrow">Pause tomorrow</string>
+    <string name="pause_tomorrow_desc">The next alarm is skipped, the schedule stays.</string>
+    <string name="next_alarm_format">Next alarm: %1$s, %2$s at %3$s (%4$s)</string>
+    <string name="next_alarm_none">No alarms scheduled</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="back">Back</string>
+    <string name="now_is_week">It is now:</string>
+    <string name="anchor_info">Set: %1$s is %2$s</string>
+    <string name="anchor_not_set">No week selected yet.</string>
+    <string name="define_week">Define week</string>
+    <string name="anchor_editor_hint">Pick any date and the week it belongs to. It does not have to be a Monday.</string>
+    <string name="anchor_date_button">Date: %1$s</string>
+    <string name="save">Save</string>
+    <string name="ringtone">Alarm sound</string>
+    <string name="ringtone_default">Default alarm sound</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="app_language">App language</string>
+    <string name="app_language_system">Same as system</string>
+    <string name="date_format">Date format</string>
+    <string name="date_format_auto">Based on language</string>
+    <string name="date_format_hr">Croatian (9.11.2026.)</string>
+    <string name="date_format_en">English (Nov 9, 2026)</string>
+    <string name="time_format">Time format</string>
+    <string name="snooze_duration">Snooze length</string>
+    <string name="snooze_option">%1$d min</string>
+    <string name="snooze_repeat">Snooze repeats</string>
+    <string name="snooze_repeat_unlimited">Unlimited</string>
+    <plurals name="snooze_repeat_times">
+        <item quantity="one">%d time</item>
+        <item quantity="other">%d times</item>
+    </plurals>
+    <string name="time_format_auto">Based on language</string>
+    <string name="time_format_24h">24-hour (19:30)</string>
+    <string name="time_format_12h">12-hour (7:30 PM)</string>
+    <string name="check_permissions">Check permissions</string>
+    <string name="about">About</string>
+    <string name="about_text">Version %1$s\n\nAB Alarm alternates alarms for Week A and Week B (morning and afternoon school shifts) without switching them by hand.</string>
+    <string name="ok">OK</string>
+
+    <!-- Startup -->
+    <string name="exact_dialog_title">Alarms may not ring on time</string>
+    <string name="exact_dialog_text">AB Alarm needs the exact alarms permission. Open settings and turn it on.</string>
+    <string name="open_settings">Open settings</string>
+    <string name="later">Later</string>
+
+    <!-- Permissions wizard -->
+    <string name="permissions_intro">Go through the steps in order. Green means everything is fine.</string>
+    <string name="perm_ok">OK</string>
+    <string name="perm_missing">Missing</string>
+    <string name="perm_fix">Fix</string>
+    <string name="perm_exact_title">Exact alarms</string>
+    <string name="perm_exact_desc">Without this, Android may delay the alarm by several minutes.</string>
+    <string name="perm_notif_title">Notifications</string>
+    <string name="perm_notif_desc">Needed to show the alarm with the \"Snooze\" and \"Stop\" buttons.</string>
+    <string name="perm_battery_title">Battery optimization</string>
+    <string name="perm_battery_desc">Turn off battery optimization for AB Alarm so the system does not put it to sleep.</string>
+    <string name="perm_fullscreen_title">Show over lock screen</string>
+    <string name="perm_fullscreen_desc">Lets the alarm appear full screen while the phone is locked.</string>
+    <string name="perm_oem_title">Extra steps for your phone</string>
+    <string name="perm_oem_other">No extra steps are needed for your phone.</string>
+    <string name="open_app_settings">Open app settings</string>
+    <string name="oem_xiaomi">Xiaomi / Redmi / POCO (MIUI, HyperOS):\n1. Settings → Apps → AB Alarm → turn on \"Autostart\".\n2. Battery saver → choose \"No restrictions\".\n3. In the recent apps list, lock AB Alarm (padlock icon).</string>
+    <string name="oem_huawei">Huawei / Honor (EMUI, MagicOS):\n1. Settings → Battery → App launch → AB Alarm.\n2. Turn off \"Manage automatically\" and turn on all three options: auto-launch, secondary launch and run in background.</string>
+    <string name="oem_oppo">OPPO / realme / OnePlus (ColorOS):\n1. Settings → Apps → AB Alarm → allow \"Auto launch\".\n2. Battery usage → allow background activity.\n3. In the recent apps list, lock AB Alarm.</string>
+    <string name="oem_vivo">vivo / iQOO (Funtouch OS, OriginOS):\n1. i Manager → App manager → Autostart → turn on AB Alarm.\n2. Settings → Battery → High background power consumption → allow AB Alarm.</string>
+
+    <!-- Alarm -->
+    <string name="alarm_label_format">%1$s · %2$s %3$s</string>
+    <string name="alarm_notification_title">Time to get up!</string>
+    <string name="action_snooze">Snooze %1$d min</string>
+    <string name="action_stop">Stop</string>
+    <string name="channel_alarm_name">Alarms</string>
+    <string name="channel_alarm_desc">Notification while the alarm is ringing</string>
+    <string name="channel_fallback_name">Alarms (backup)</string>
+    <string name="channel_fallback_desc">Used only if the alarm cannot start the usual way</string>
+</resources>

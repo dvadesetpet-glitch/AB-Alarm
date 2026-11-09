@@ -1,0 +1,17 @@
+*.iml
+.gradle
+.kotlin
+/local.properties
+local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+# Ključevi za potpisivanje nikad ne idu u repo
+*.jks
+*.keystore
+keystore.properties
+# Izvorna specifikacija (lokalno)
+app/prompt.txt

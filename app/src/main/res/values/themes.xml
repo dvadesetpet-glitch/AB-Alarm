@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose crta cijeli UI; ova tema služi za prozor prije prvog iscrtavanja. -->
+    <!-- AppCompat tema je potrebna jer su aktivnosti AppCompatActivity (jezik aplikacije). -->
+    <style name="Theme.AbAlarm" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorPrimary">@color/week_a_blue</item>
+        <item name="colorAccent">@color/week_a_blue</item>
+    </style>
+</resources>
