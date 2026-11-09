@@ -51,7 +51,7 @@ U hrvatskim školama učenici jedan tjedan idu u školu ujutro, a sljedeći popo
 
 Potreban je **Android 8.0 (API 26)** ili noviji.
 
-> ⚠️ Verzija 0.1 je rana testna verzija, potpisana razvojnim (debug) ključem. Kasnije verzije s drugim ključem neće se moći instalirati preko nje, pa će je trebati prvo deinstalirati.
+> ℹ️ Verzija 0.1 je prva, rana verzija. APK je potpisan release ključem, pa će se iduće verzije instalirati preko nje bez gubitka postavki.
 
 ### Kako se računa tjedan
 
@@ -72,6 +72,17 @@ Potrebni su Android Studio (ili JDK 17+) i Android SDK.
 ./gradlew testDebugUnitTest      # unit testovi (izračun tjedna, sljedeći alarm, odgoda)
 ./gradlew installDebug           # instalacija na spojeni mobitel/emulator
 ```
+
+**Potpisani release APK:** u korijenu projekta napravi datoteku `keystore.properties` (ne ide u git):
+
+```properties
+storeFile=C:/putanja/do/kljuca.jks
+storePassword=...
+keyAlias=...
+keyPassword=...
+```
+
+zatim pokreni `./gradlew assembleRelease`. APK će biti u `app/build/outputs/apk/release/app-release.apk`. Bez te datoteke release build se izgradi, ali nepotpisan.
 
 **Ručno testiranje izmjene tjedana:** u **Postavke → Definiraj tjedan** odaberi datum iz prošlog tjedna s istom oznakom. Oznaka „ovaj tjedan” i redak „Sljedeći alarm” trebaju se prebaciti na drugi tjedan.
 
@@ -128,7 +139,7 @@ In Croatian schools, students attend school in the morning one week and in the a
 
 Requires **Android 8.0 (API 26)** or newer.
 
-> ⚠️ Version 0.1 is an early test build, signed with a development (debug) key. Later versions signed with a different key cannot be installed over it, so you will need to uninstall it first.
+> ℹ️ Version 0.1 is the first, early version. The APK is signed with a release key, so future versions will install over it without losing your settings.
 
 ### How the week is calculated
 
@@ -149,6 +160,17 @@ You need Android Studio (or JDK 17+) and the Android SDK.
 ./gradlew testDebugUnitTest      # unit tests (week calculation, next alarm, snooze)
 ./gradlew installDebug           # install on a connected phone/emulator
 ```
+
+**Signed release APK:** create a `keystore.properties` file in the project root (it is not committed to git):
+
+```properties
+storeFile=C:/path/to/key.jks
+storePassword=...
+keyAlias=...
+keyPassword=...
+```
+
+then run `./gradlew assembleRelease`. The APK will be in `app/build/outputs/apk/release/app-release.apk`. Without that file the release build still works, but the APK is unsigned.
 
 **Testing week switching by hand:** in **Settings → Define week**, pick a date from last week with the same label. The "this week" label and the "Next alarm" line should switch to the other week.
 
