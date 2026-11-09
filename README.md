@@ -45,14 +45,14 @@ U hrvatskim školama učenici jedan tjedan idu u školu ujutro, a sljedeći popo
 
 ### Instalacija
 
-1. Preuzmi `AB-Alarm-v0.1.apk` s [Releases](../../releases).
+1. Preuzmi najnoviji `AB-Alarm-vX.Y.apk` s [Releases](../../releases/latest).
 2. Otvori datoteku na mobitelu i dopusti instalaciju iz nepoznatih izvora.
 3. Pri prvom pokretanju dopusti obavijesti, pa odaberi ideš li ovaj tjedan ujutro ili popodne.
 4. Otvori **Postavke → Provjeri dopuštenja** i prođi kroz korake.
 
 Potreban je **Android 8.0 (API 26)** ili noviji.
 
-> ℹ️ Verzija 0.1 je prva, rana verzija. APK je potpisan release ključem, pa će se iduće verzije instalirati preko nje bez gubitka postavki.
+> ℹ️ AB Alarm je u ranoj fazi razvoja (0.x). APK je potpisan release ključem, pa se nove verzije instaliraju preko starih bez gubitka postavki.
 
 ### Kako se računa tjedan
 
@@ -134,14 +134,14 @@ In Croatian schools, students attend school in the morning one week and in the a
 
 ### Installation
 
-1. Download `AB-Alarm-v0.1.apk` from [Releases](../../releases).
+1. Download the latest `AB-Alarm-vX.Y.apk` from [Releases](../../releases/latest).
 2. Open the file on your phone and allow installing from unknown sources.
 3. On first launch, allow notifications, then choose whether you go to school in the morning or the afternoon this week.
 4. Open **Settings → Check permissions** and go through the steps.
 
 Requires **Android 8.0 (API 26)** or newer.
 
-> ℹ️ Version 0.1 is the first, early version. The APK is signed with a release key, so future versions will install over it without losing your settings.
+> ℹ️ AB Alarm is in early development (0.x). The APK is signed with a release key, so new versions install over old ones without losing your settings.
 
 ### How the week is calculated
 
